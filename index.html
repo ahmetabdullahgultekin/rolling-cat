@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RollingCat Software</title>
+    <meta name="description" content="RollingCat Software — Building modern, secure, and scalable applications. Biometric authentication, school scheduling, Quranic analysis, and more.">
+    <meta name="theme-color" content="#6366f1">
+    <meta property="og:title" content="RollingCat Software">
+    <meta property="og:description" content="Building modern, secure, and scalable applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rollingcatsoftware.com">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --border: #2a2a3a;
+            --border-hover: #3a3a50;
+            --text-primary: #e8e8f0;
+            --text-secondary: #9494a8;
+            --text-muted: #6a6a80;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --green: #22c55e;
+            --yellow: #eab308;
+            --blue: #3b82f6;
+            --orange: #f97316;
+            --pink: #ec4899;
+            --cyan: #06b6d4;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-logo svg { width: 28px; height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .lang-toggle {
+            cursor: pointer;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.2s;
+            margin-left: 8px;
+        }
+
+        .lang-toggle:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-light), var(--cyan), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            box-shadow: 0 4px 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn svg { width: 18px; height: 18px; }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 64px;
+            position: relative;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 100px 24px; }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== PROJECT CARDS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .project-card[data-color="indigo"]::before { background: linear-gradient(90deg, #6366f1, #818cf8); }
+        .project-card[data-color="emerald"]::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .project-card[data-color="amber"]::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .project-card[data-color="rose"]::before { background: linear-gradient(90deg, #f43f5e, #fb7185); }
+        .project-card[data-color="sky"]::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+        .project-card[data-color="violet"]::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .project-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .project-card[data-color="indigo"] .project-icon { background: rgba(99,102,241,0.12); }
+        .project-card[data-color="emerald"] .project-icon { background: rgba(16,185,129,0.12); }
+        .project-card[data-color="amber"] .project-icon { background: rgba(245,158,11,0.12); }
+        .project-card[data-color="rose"] .project-icon { background: rgba(244,63,94,0.12); }
+        .project-card[data-color="sky"] .project-icon { background: rgba(14,165,233,0.12); }
+        .project-card[data-color="violet"] .project-icon { background: rgba(139,92,246,0.12); }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+        }
+
+        .status-badge.production {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .status-badge.beta {
+            background: rgba(234, 179, 8, 0.1);
+            color: #facc15;
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+
+        .status-badge.development {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .status-badge .status-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .status-badge.production .status-dot { background: #4ade80; }
+        .status-badge.beta .status-dot { background: #facc15; }
+        .status-badge.development .status-dot { background: #60a5fa; }
+
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .project-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tech-badge {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-secondary);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .project-link:hover { color: #fff; gap: 10px; }
+
+        .project-link svg { width: 16px; height: 16px; transition: transform 0.2s; }
+        .project-link:hover svg { transform: translateX(2px); }
+
+        /* ===== ABOUT ===== */
+        #about {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .about-card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .about-card-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-card-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== TECH ===== */
+        .tech-section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .tech-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .tech-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .tech-item-icon { font-size: 1.6rem; margin-bottom: 8px; }
+        .tech-item-name { font-size: 0.8rem; font-weight: 600; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-left {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text-primary); }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 16px;
+                border-bottom: 1px solid var(--border);
+                gap: 4px;
+            }
+            .nav-links.open a { padding: 12px 16px; }
+            .mobile-menu-btn { display: block; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .stats { gap: 32px; }
+            section { padding: 64px 20px; }
+            .hero { padding: 100px 20px 60px; }
+        }
+
+        @media (max-width: 480px) {
+            .about-cards { grid-template-columns: 1fr; }
+            .tech-section-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ===== LANGUAGE TOGGLE ===== */
+        [data-lang="en"] [data-tr] { display: none; }
+        [data-lang="en"] [data-en] { display: inline; }
+        [data-lang="tr"] [data-en] { display: none; }
+        [data-lang="tr"] [data-tr] { display: inline; }
+
+        /* block-level elements */
+        [data-lang="en"] p[data-tr], [data-lang="en"] span[data-tr], [data-lang="en"] div[data-tr] { display: none; }
+        [data-lang="en"] p[data-en], [data-lang="en"] span[data-en], [data-lang="en"] div[data-en] { display: block; }
+        [data-lang="tr"] p[data-en], [data-lang="tr"] span[data-en], [data-lang="tr"] div[data-en] { display: none; }
+        [data-lang="tr"] p[data-tr], [data-lang="tr"] span[data-tr], [data-lang="tr"] div[data-tr] { display: block; }
+
+        /* inline fix for spans inside flex */
+        [data-lang="en"] span[data-en] { display: inline; }
+        [data-lang="tr"] span[data-tr] { display: inline; }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#6366f1"/>
+                <path d="M8 16c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="12" cy="14" r="1.5" fill="#fff"/>
+                <circle cx="20" cy="14" r="1.5" fill="#fff"/>
+                <path d="M12 19c0 0 2 2.5 4 2.5s4-2.5 4-2.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 10l-2-3M26 10l2-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            RollingCat
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#projects"><span data-en>Projects</span><span data-tr>Projeler</span></a>
+            <a href="#about"><span data-en>About</span><span data-tr>Hakkimda</span></a>
+            <a href="#tech"><span data-en>Tech Stack</span><span data-tr>Teknolojiler</span></a>
+            <a href="https://github.com/AhmetKadir" target="_blank" rel="noopener">GitHub</a>
+            <button class="lang-toggle" id="langToggle" aria-label="Toggle language">TR</button>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-badge">
+        <span class="dot"></span>
+        <span data-en>Building in production</span>
+        <span data-tr>Uretimde gelistiriliyor</span>
+    </div>
+    <h1>
+        <span class="gradient">RollingCat</span> Software
+    </h1>
+    <p data-en>Designing and building modern, secure, and scalable applications from idea to deployment.</p>
+    <p data-tr>Fikirden dagitima kadar modern, guvenli ve olceklenebilir uygulamalar tasarliyor ve gelistiriyorum.</p>
+    <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+            <span data-en>View Projects</span>
+            <span data-tr>Projeleri Gor</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://github.com/AhmetKadir" target="_blank" rel="noopener" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+        </a>
+    </div>
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-label"><span data-en>Projects</span><span data-tr>Proje</span></div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">12+</div>
+            <div class="stat-label"><span data-en>Technologies</span><span data-tr>Teknoloji</span></div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">4</div>
+            <div class="stat-label"><span data-en>In Production</span><span data-tr>Uretimde</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Projects</span><span data-tr>Projeler</span></h2>
+            <p data-en>End-to-end solutions, from backend to mobile, designed and built solo.</p>
+            <p data-tr>Backend'den mobile kadar, bastan sona tasarlanmis ve tek basima gelistirilmis cozumler.</p>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- FIVUCSAS -->
+            <div class="project-card fade-in" data-color="indigo">
+                <div class="project-header">
+                    <div class="project-icon">&#x1F9EC;</div>
+                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                </div>
+                <div class="project-name">FIVUCSAS</div>
+                <div class="project-subtitle"><span data-en>Biometric Authentication Platform</span><span data-tr>Biyometrik Kimlik Dogrulama Platformu</span></div>
+                <p class="project-desc" data-en>Multi-tenant biometric authentication SaaS featuring 10 auth methods including face recognition, voice verification, fingerprint, NFC, TOTP, and WebAuthn. Built as a university engineering capstone project.</p>
+                <p class="project-desc" data-tr>Yuz tanima, ses dogrulama, parmak izi, NFC, TOTP ve WebAuthn dahil 10 kimlik dogrulama yontemi iceren cok kiracili biyometrik kimlik dogrulama SaaS platformu. Universite muhendislik bitirme projesi olarak gelistirildi.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Spring Boot</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Kotlin Multiplatform</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Redis</span>
+                </div>
+                <a href="https://ica-fivucsas.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Sarnic -->
+            <div class="project-card fade-in" data-color="emerald">
+                <div class="project-header">
+                    <div class="project-icon">&#x1F4C5;</div>
+                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                </div>
+                <div class="project-name">Sarnic</div>
+                <div class="project-subtitle"><span data-en>School Scheduling Platform</span><span data-tr>Okul Ders Programi Platformu</span></div>
+                <p class="project-desc" data-en>Multi-tenant school scheduling system with an intuitive drag-and-drop designer, AI-powered constraint solver using Timefold, and real-time WebSocket notifications for instant schedule updates.</p>
+                <p class="project-desc" data-tr>Surukle-birak tasarimcisi, Timefold tabanli yapay zeka destekli kisit cozucu ve anlik program guncellemeleri icin gercek zamanli WebSocket bildirimleri iceren cok kiracili okul ders programi sistemi.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Spring Boot</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Timefold Solver</span>
+                    <span class="tech-badge">WebSocket</span>
+                </div>
+                <a href="https://sarnic.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Mizan -->
+            <div class="project-card fade-in" data-color="amber">
+                <div class="project-header">
+                    <div class="project-icon">&#x1F4D6;</div>
+                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                </div>
+                <div class="project-name">Mizan</div>
+                <div class="project-subtitle"><span data-en>Quranic Text Analysis</span><span data-tr>Kuran Metin Analizi</span></div>
+                <p class="project-desc" data-en>Semantic search engine across Quran, Tafsir, and Hadith collections. Features hybrid BM25 + vector retrieval with pgvector, Arabic morphological analysis using ISRI stemmer, and cross-language query support.</p>
+                <p class="project-desc" data-tr>Kuran, Tefsir ve Hadis koleksiyonlari uzerinde semantik arama motoru. pgvector ile hibrit BM25 + vektor arama, ISRI stemmer ile Arapca morfolojik analiz ve diller arasi sorgu destegi sunar.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">Next.js</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">pgvector</span>
+                    <span class="tech-badge">ISRI Stemmer</span>
+                </div>
+                <a href="https://mizan.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Muhabbet -->
+            <div class="project-card fade-in" data-color="rose">
+                <div class="project-header">
+                    <div class="project-icon">&#x1F4AC;</div>
+                    <span class="status-badge beta"><span class="status-dot"></span> Beta</span>
+                </div>
+                <div class="project-name">Muhabbet</div>
+                <div class="project-subtitle"><span data-en>Turkish Messaging Platform</span><span data-tr>Turkce Mesajlasma Platformu</span></div>
+                <p class="project-desc" data-en>Privacy-first Turkish messaging application with end-to-end encryption via Signal Protocol, voice calls, and full KVKK (Turkish GDPR) compliance. Cross-platform with Compose Multiplatform.</p>
+                <p class="project-desc" data-tr>Signal Protokolu ile uctan uca sifreleme, sesli arama ve tam KVKK uyumlulugu sunan gizlilik oncelikli Turkce mesajlasma uygulamasi. Compose Multiplatform ile cok platformlu destek.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Kotlin</span>
+                    <span class="tech-badge">Spring Boot</span>
+                    <span class="tech-badge">Compose Multiplatform</span>
+                    <span class="tech-badge">WebSocket</span>
+                    <span class="tech-badge">Signal Protocol</span>
+                </div>
+                <span class="project-link" style="color: var(--text-muted); cursor: default;">
+                    <span data-en>Coming Soon</span><span data-tr>Cok Yakinda</span>
+                </span>
+            </div>
+
+            <!-- TrainVoc -->
+            <div class="project-card fade-in" data-color="sky">
+                <div class="project-header">
+                    <div class="project-icon">&#x1F3A4;</div>
+                    <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                </div>
+                <div class="project-name">TrainVoc</div>
+                <div class="project-subtitle"><span data-en>Voice Training Platform</span><span data-tr>Ses Egitim Platformu</span></div>
+                <p class="project-desc" data-en>A voice training and analysis platform designed to help users improve their vocal skills through guided exercises and real-time feedback.</p>
+                <p class="project-desc" data-tr>Kullanicilarin rehberli alistirmalar ve gercek zamanli geri bildirim ile ses becerilerini gelistirmelerine yardimci olmak icin tasarlanmis bir ses egitim ve analiz platformu.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Vite</span>
+                </div>
+                <a href="https://trainvoc.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- FlowMate -->
+            <div class="project-card fade-in" data-color="violet">
+                <div class="project-header">
+                    <div class="project-icon">&#x26A1;</div>
+                    <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                </div>
+                <div class="project-name">FlowMate</div>
+                <div class="project-subtitle"><span data-en>Workflow Automation</span><span data-tr>Is Akisi Otomasyonu</span></div>
+                <p class="project-desc" data-en>A workflow automation tool designed to streamline repetitive tasks and boost productivity through intelligent process orchestration.</p>
+                <p class="project-desc" data-tr>Tekrarlayan gorevleri basitlestirmek ve akilli surec orkestrasyon ile verimliligi artirmak icin tasarlanmis bir is akisi otomasyon araci.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Vite</span>
+                </div>
+                <a href="https://flowmate.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-inner">
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h2><span data-en>About Me</span><span data-tr>Hakkimda</span></h2>
+                <p data-en>I'm a solo full-stack developer and Computer Engineering student at Marmara University, Istanbul. I design and build complete systems end-to-end -- from database architecture and backend APIs to frontend interfaces and mobile apps.</p>
+                <p data-tr>Istanbul Marmara Universitesi Bilgisayar Muhendisligi ogrencisi ve bagimsiz full-stack gelistiriciyim. Veritabani mimarisinden backend API'lere, frontend arayuzlerden mobil uygulamalara kadar sistemleri bastan sona tasarliyor ve gelistiriyorum.</p>
+                <p data-en>Every project on this page is self-hosted on my own infrastructure, with CI/CD pipelines, Docker orchestration, and monitoring -- because shipping means owning the full lifecycle.</p>
+                <p data-tr>Bu sayfadaki her proje, CI/CD pipeline'lari, Docker orkestrasyon ve izleme ile kendi altyapimda barindiriliyor -- cunku uretim, tum yasam dongusune sahip olmak demektir.</p>
+            </div>
+            <div class="about-cards fade-in">
+                <div class="about-card">
+                    <div class="about-card-icon">&#x1F393;</div>
+                    <div class="about-card-title"><span data-en>Marmara University</span><span data-tr>Marmara Universitesi</span></div>
+                    <div class="about-card-sub"><span data-en>Computer Engineering</span><span data-tr>Bilgisayar Muhendisligi</span></div>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">&#x1F6E0;&#xFE0F;</div>
+                    <div class="about-card-title"><span data-en>Full-Stack</span><span data-tr>Full-Stack</span></div>
+                    <div class="about-card-sub"><span data-en>Backend to Mobile</span><span data-tr>Backend'den Mobile</span></div>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">&#x2601;&#xFE0F;</div>
+                    <div class="about-card-title"><span data-en>Self-Hosted</span><span data-tr>Kendi Sunucum</span></div>
+                    <div class="about-card-sub"><span data-en>Docker + CI/CD</span><span data-tr>Docker + CI/CD</span></div>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">&#x1F1F9;&#x1F1F7;</div>
+                    <div class="about-card-title"><span data-en>Istanbul, Turkey</span><span data-tr>Istanbul, Turkiye</span></div>
+                    <div class="about-card-sub"><span data-en>Solo Developer</span><span data-tr>Bagimsiz Gelistirici</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Tech Stack</span><span data-tr>Teknoloji Yigini</span></h2>
+            <p data-en>The tools and technologies I work with daily.</p>
+            <p data-tr>Gunluk olarak calistigim arac ve teknolojiler.</p>
+        </div>
+        <div class="tech-section-grid fade-in">
+            <div class="tech-item"><div class="tech-item-icon">&#x2615;</div><div class="tech-item-name">Spring Boot</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F40D;</div><div class="tech-item-name">FastAPI</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x269B;&#xFE0F;</div><div class="tech-item-name">React</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x25B2;</div><div class="tech-item-name">Next.js</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F7E3;</div><div class="tech-item-name">Kotlin</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F4F1;</div><div class="tech-item-name">Compose MP</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F418;</div><div class="tech-item-name">PostgreSQL</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F534;</div><div class="tech-item-name">Redis</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F433;</div><div class="tech-item-name">Docker</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x2699;&#xFE0F;</div><div class="tech-item-name">GitHub Actions</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F310;</div><div class="tech-item-name">Nginx</div></div>
+            <div class="tech-item"><div class="tech-item-icon">&#x1F4CA;</div><div class="tech-item-name">pgvector</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">&copy; 2026 RollingCat Software. <span data-en>All rights reserved.</span><span data-tr>Tum haklari saklidir.</span></div>
+        <div class="footer-links">
+            <a href="https://github.com/AhmetKadir" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:contact@rollingcatsoftware.com">
+                <span data-en>Contact</span><span data-tr>Iletisim</span>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Language toggle
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        if (html.getAttribute('data-lang') === 'en') {
+            html.setAttribute('data-lang', 'tr');
+            langToggle.textContent = 'EN';
+            document.title = 'RollingCat Software';
+        } else {
+            html.setAttribute('data-lang', 'en');
+            langToggle.textContent = 'TR';
+            document.title = 'RollingCat Software';
+        }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
