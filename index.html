@@ -3,13 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RollingCat Software</title>
-    <meta name="description" content="RollingCat Software — Building modern, secure, and scalable applications. Biometric authentication, school scheduling, Quranic analysis, and more.">
+    <title>RollingCat Software — Modern Web, Mobile &amp; AI Solutions</title>
+    <meta name="description" content="RollingCat Software — Building modern, secure, and scalable applications. Biometric authentication, school scheduling, Quranic analysis, and more. Solo developer based in Istanbul.">
+    <meta name="keywords" content="RollingCat Software, full-stack developer, Istanbul, web development, mobile development, AI, machine learning, Spring Boot, React, Kotlin, Docker">
+    <meta name="author" content="Ahmet Abdullahgultekin">
     <meta name="theme-color" content="#6366f1">
-    <meta property="og:title" content="RollingCat Software">
-    <meta property="og:description" content="Building modern, secure, and scalable applications.">
+
+    <!-- OG Meta -->
+    <meta property="og:title" content="RollingCat Software — Modern Web, Mobile &amp; AI Solutions">
+    <meta property="og:description" content="Building modern, secure, and scalable applications from idea to deployment. 6 projects, 12+ technologies, self-hosted infrastructure.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rollingcatsoftware.com">
+    <meta property="og:site_name" content="RollingCat Software">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="tr_TR">
+    <meta property="og:image" content="https://rollingcatsoftware.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RollingCat Software — Modern Web, Mobile &amp; AI Solutions">
+    <meta name="twitter:description" content="Building modern, secure, and scalable applications from idea to deployment.">
+    <meta name="twitter:image" content="https://rollingcatsoftware.com/og-image.png">
+
+    <link rel="canonical" href="https://rollingcatsoftware.com">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -318,6 +336,59 @@
             margin: 0 auto;
         }
 
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 18px;
+        }
+
+        .service-card:nth-child(1) .service-icon { background: rgba(99,102,241,0.12); }
+        .service-card:nth-child(2) .service-icon { background: rgba(14,165,233,0.12); }
+        .service-card:nth-child(3) .service-icon { background: rgba(16,185,129,0.12); }
+        .service-card:nth-child(4) .service-icon { background: rgba(244,63,94,0.12); }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
         /* ===== PROJECT CARDS ===== */
         .projects-grid {
             display: grid;
@@ -369,6 +440,12 @@
             margin-bottom: 14px;
         }
 
+        .project-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .project-icon {
             width: 44px;
             height: 44px;
@@ -386,6 +463,19 @@
         .project-card[data-color="rose"] .project-icon { background: rgba(244,63,94,0.12); }
         .project-card[data-color="sky"] .project-icon { background: rgba(14,165,233,0.12); }
         .project-card[data-color="violet"] .project-icon { background: rgba(139,92,246,0.12); }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            background: rgba(99,102,241,0.1);
+            color: var(--accent-light);
+            border: 1px solid rgba(99,102,241,0.2);
+        }
 
         .status-badge {
             display: inline-flex;
@@ -428,6 +518,13 @@
         .status-badge.beta .status-dot { background: #facc15; }
         .status-badge.development .status-dot { background: #60a5fa; }
 
+        .project-badges {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
         .project-name {
             font-size: 1.3rem;
             font-weight: 700;
@@ -466,6 +563,13 @@
             color: var(--text-secondary);
         }
 
+        .project-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -481,6 +585,118 @@
 
         .project-link svg { width: 16px; height: 16px; transition: transform 0.2s; }
         .project-link:hover svg { transform: translateX(2px); }
+
+        .project-link-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .project-link-github:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .project-link-github svg { width: 14px; height: 14px; }
+
+        /* ===== SCREENSHOTS / MOCKUPS ===== */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .screenshot-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+
+        .screenshot-preview {
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .screenshot-preview .mockup-label {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -0.01em;
+        }
+
+        .screenshot-preview .mockup-sublabel {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 4px;
+        }
+
+        .screenshot-preview-inner {
+            text-align: center;
+        }
+
+        .screenshot-info {
+            background: var(--bg-card);
+            padding: 18px 20px;
+        }
+
+        .screenshot-info-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .screenshot-info-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== INFRASTRUCTURE ===== */
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .infra-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .infra-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .infra-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .infra-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .infra-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
 
         /* ===== ABOUT ===== */
         #about {
@@ -571,6 +787,135 @@
         .tech-item-icon { font-size: 1.6rem; margin-bottom: 8px; }
         .tech-item-name { font-size: 0.8rem; font-weight: 600; }
 
+        /* ===== BLOG PLACEHOLDER ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .blog-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .blog-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(99,102,241,0.1);
+            color: var(--accent-light);
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+
+        .blog-coming-soon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .contact-content > p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.25s;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .contact-link:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-link svg { width: 20px; height: 20px; }
+
+        .contact-link-email { border-color: rgba(99,102,241,0.3); }
+        .contact-link-email:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(99,102,241,0.2); }
+
+        .contact-link-github { border-color: rgba(255,255,255,0.1); }
+        .contact-link-github:hover { border-color: rgba(255,255,255,0.3); }
+
         /* ===== FOOTER ===== */
         footer {
             border-top: 1px solid var(--border);
@@ -637,15 +982,21 @@
             .nav-links.open a { padding: 12px 16px; }
             .mobile-menu-btn { display: block; }
             .projects-grid { grid-template-columns: 1fr; }
+            .screenshots-grid { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; gap: 40px; }
             .stats { gap: 32px; }
             section { padding: 64px 20px; }
             .hero { padding: 100px 20px 60px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: repeat(2, 1fr); }
+            .blog-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; }
         }
 
         @media (max-width: 480px) {
             .about-cards { grid-template-columns: 1fr; }
             .tech-section-grid { grid-template-columns: repeat(3, 1fr); }
+            .infra-grid { grid-template-columns: 1fr; }
         }
 
         /* ===== LANGUAGE TOGGLE ===== */
@@ -663,6 +1014,10 @@
         /* inline fix for spans inside flex */
         [data-lang="en"] span[data-en] { display: inline; }
         [data-lang="tr"] span[data-tr] { display: inline; }
+
+        /* fix for divs that should be flex/grid */
+        [data-lang="en"] div[data-en].project-links { display: flex; }
+        [data-lang="tr"] div[data-tr].project-links { display: flex; }
     </style>
 </head>
 <body>
@@ -682,9 +1037,11 @@
             RollingCat
         </a>
         <div class="nav-links" id="navLinks">
+            <a href="#services"><span data-en>Services</span><span data-tr>Hizmetler</span></a>
             <a href="#projects"><span data-en>Projects</span><span data-tr>Projeler</span></a>
+            <a href="#infrastructure"><span data-en>Infra</span><span data-tr>Altyapi</span></a>
             <a href="#about"><span data-en>About</span><span data-tr>Hakkimda</span></a>
-            <a href="#tech"><span data-en>Tech Stack</span><span data-tr>Teknolojiler</span></a>
+            <a href="#contact"><span data-en>Contact</span><span data-tr>Iletisim</span></a>
             <a href="https://github.com/AhmetKadir" target="_blank" rel="noopener">GitHub</a>
             <button class="lang-toggle" id="langToggle" aria-label="Toggle language">TR</button>
         </div>
@@ -716,6 +1073,11 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             GitHub
         </a>
+        <a href="#contact" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span data-en>Contact</span>
+            <span data-tr>Iletisim</span>
+        </a>
     </div>
     <div class="stats">
         <div class="stat">
@@ -733,8 +1095,45 @@
     </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Services</span><span data-tr>Hizmetler</span></h2>
+            <p data-en>End-to-end capabilities, from concept to production.</p>
+            <p data-tr>Konseptten uretime kadar uctan uca yetenekler.</p>
+        </div>
+        <div class="services-grid fade-in">
+            <div class="service-card">
+                <div class="service-icon">&#x1F310;</div>
+                <div class="service-title"><span data-en>Web Development</span><span data-tr>Web Gelistirme</span></div>
+                <p class="service-desc" data-en>Full-stack web applications with React, Next.js, Spring Boot, and FastAPI. Responsive, accessible, and performant.</p>
+                <p class="service-desc" data-tr>React, Next.js, Spring Boot ve FastAPI ile full-stack web uygulamalari. Duyarli, erisilebilir ve performansli.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">&#x1F4F1;</div>
+                <div class="service-title"><span data-en>Mobile Development</span><span data-tr>Mobil Gelistirme</span></div>
+                <p class="service-desc" data-en>Cross-platform mobile apps with Kotlin Multiplatform and Compose Multiplatform. Android and iOS from a single codebase.</p>
+                <p class="service-desc" data-tr>Kotlin Multiplatform ve Compose Multiplatform ile cok platformlu mobil uygulamalar. Tek kod tabanindan Android ve iOS.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">&#x2601;&#xFE0F;</div>
+                <div class="service-title"><span data-en>Cloud Infrastructure</span><span data-tr>Bulut Altyapisi</span></div>
+                <p class="service-desc" data-en>Self-hosted infrastructure with Docker, Traefik, CI/CD pipelines, monitoring, and automated deployments on Hetzner VPS.</p>
+                <p class="service-desc" data-tr>Docker, Traefik, CI/CD pipeline'lari, izleme ve Hetzner VPS uzerinde otomatik dagitim ile kendi barindirma altyapisi.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">&#x1F9E0;</div>
+                <div class="service-title"><span data-en>AI / ML Integration</span><span data-tr>YZ / MO Entegrasyonu</span></div>
+                <p class="service-desc" data-en>Semantic search with pgvector, NLP pipelines, biometric authentication (face, voice, fingerprint), and intelligent scheduling solvers.</p>
+                <p class="service-desc" data-tr>pgvector ile semantik arama, NLP pipeline'lari, biyometrik kimlik dogrulama (yuz, ses, parmak izi) ve akilli zamanlama cozuculeri.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="section-inner">
         <div class="section-header fade-in">
             <h2><span data-en>Projects</span><span data-tr>Projeler</span></h2>
@@ -747,8 +1146,13 @@
             <!-- FIVUCSAS -->
             <div class="project-card fade-in" data-color="indigo">
                 <div class="project-header">
-                    <div class="project-icon">&#x1F9EC;</div>
-                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F9EC;</div>
+                        <div class="project-badges">
+                            <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                            <span class="feature-badge">10 <span data-en>auth methods</span><span data-tr>dogrulama</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">FIVUCSAS</div>
                 <div class="project-subtitle"><span data-en>Biometric Authentication Platform</span><span data-tr>Biyometrik Kimlik Dogrulama Platformu</span></div>
@@ -762,17 +1166,28 @@
                     <span class="tech-badge">PostgreSQL</span>
                     <span class="tech-badge">Redis</span>
                 </div>
-                <a href="https://ica-fivucsas.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
-                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="project-links">
+                    <a href="https://ica-fivucsas.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Live Demo</span><span data-tr>Canli Demo</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/fivucsas" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
             <!-- Sarnic -->
             <div class="project-card fade-in" data-color="emerald">
                 <div class="project-header">
-                    <div class="project-icon">&#x1F4C5;</div>
-                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F4C5;</div>
+                        <div class="project-badges">
+                            <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                            <span class="feature-badge">AI <span data-en>solver</span><span data-tr>cozucu</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">Sarnic</div>
                 <div class="project-subtitle"><span data-en>School Scheduling Platform</span><span data-tr>Okul Ders Programi Platformu</span></div>
@@ -785,17 +1200,28 @@
                     <span class="tech-badge">Timefold Solver</span>
                     <span class="tech-badge">WebSocket</span>
                 </div>
-                <a href="https://sarnic.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
-                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="project-links">
+                    <a href="https://sarnic.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Live Demo</span><span data-tr>Canli Demo</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/sarnic" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
             <!-- Mizan -->
             <div class="project-card fade-in" data-color="amber">
                 <div class="project-header">
-                    <div class="project-icon">&#x1F4D6;</div>
-                    <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F4D6;</div>
+                        <div class="project-badges">
+                            <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                            <span class="feature-badge"><span data-en>Semantic search</span><span data-tr>Semantik arama</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">Mizan</div>
                 <div class="project-subtitle"><span data-en>Quranic Text Analysis</span><span data-tr>Kuran Metin Analizi</span></div>
@@ -808,17 +1234,61 @@
                     <span class="tech-badge">pgvector</span>
                     <span class="tech-badge">ISRI Stemmer</span>
                 </div>
-                <a href="https://mizan.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
-                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="project-links">
+                    <a href="https://mizan.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Live Demo</span><span data-tr>Canli Demo</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/mizan" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
+            </div>
+
+            <!-- Fahrieren -->
+            <div class="project-card fade-in" data-color="rose">
+                <div class="project-header">
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F697;</div>
+                        <div class="project-badges">
+                            <span class="status-badge production"><span class="status-dot"></span> Production</span>
+                            <span class="feature-badge"><span data-en>E-commerce</span><span data-tr>E-ticaret</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-name">Fahrieren</div>
+                <div class="project-subtitle"><span data-en>Driving School Platform</span><span data-tr>Surucu Kursu Platformu</span></div>
+                <p class="project-desc" data-en>Professional driving school website for the Turkish diaspora in Germany with product showcase, admin panel, and Firebase backend. Bilingual Turkish/German support.</p>
+                <p class="project-desc" data-tr>Almanya'daki Turk diasporasi icin urun vitrinli, yonetici panelli ve Firebase altyapili profesyonel surucu kursu web sitesi. Turkce/Almanca iki dilli destek.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Vite</span>
+                    <span class="tech-badge">Tailwind CSS</span>
+                    <span class="tech-badge">Firebase</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://fahrieren.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Live Site</span><span data-tr>Canli Site</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/fahrieren" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
             <!-- Muhabbet -->
             <div class="project-card fade-in" data-color="rose">
                 <div class="project-header">
-                    <div class="project-icon">&#x1F4AC;</div>
-                    <span class="status-badge beta"><span class="status-dot"></span> Beta</span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F4AC;</div>
+                        <div class="project-badges">
+                            <span class="status-badge beta"><span class="status-dot"></span> Beta</span>
+                            <span class="feature-badge">E2E <span data-en>encrypted</span><span data-tr>sifreli</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">Muhabbet</div>
                 <div class="project-subtitle"><span data-en>Turkish Messaging Platform</span><span data-tr>Turkce Mesajlasma Platformu</span></div>
@@ -831,16 +1301,26 @@
                     <span class="tech-badge">WebSocket</span>
                     <span class="tech-badge">Signal Protocol</span>
                 </div>
-                <span class="project-link" style="color: var(--text-muted); cursor: default;">
-                    <span data-en>Coming Soon</span><span data-tr>Cok Yakinda</span>
-                </span>
+                <div class="project-links">
+                    <span class="project-link" style="color: var(--text-muted); cursor: default;">
+                        <span data-en>Coming Soon</span><span data-tr>Cok Yakinda</span>
+                    </span>
+                    <a href="https://github.com/AhmetKadir/muhabbet" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
             <!-- TrainVoc -->
             <div class="project-card fade-in" data-color="sky">
                 <div class="project-header">
-                    <div class="project-icon">&#x1F3A4;</div>
-                    <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x1F3A4;</div>
+                        <div class="project-badges">
+                            <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">TrainVoc</div>
                 <div class="project-subtitle"><span data-en>Voice Training Platform</span><span data-tr>Ses Egitim Platformu</span></div>
@@ -850,17 +1330,27 @@
                     <span class="tech-badge">TypeScript</span>
                     <span class="tech-badge">Vite</span>
                 </div>
-                <a href="https://trainvoc.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
-                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="project-links">
+                    <a href="https://trainvoc.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/trainvoc" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
             <!-- FlowMate -->
             <div class="project-card fade-in" data-color="violet">
                 <div class="project-header">
-                    <div class="project-icon">&#x26A1;</div>
-                    <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                    <div class="project-header-left">
+                        <div class="project-icon">&#x26A1;</div>
+                        <div class="project-badges">
+                            <span class="status-badge development"><span class="status-dot"></span> <span data-en>Development</span><span data-tr>Gelistirme</span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-name">FlowMate</div>
                 <div class="project-subtitle"><span data-en>Workflow Automation</span><span data-tr>Is Akisi Otomasyonu</span></div>
@@ -870,12 +1360,120 @@
                     <span class="tech-badge">JavaScript</span>
                     <span class="tech-badge">Vite</span>
                 </div>
-                <a href="https://flowmate.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
-                    <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="project-links">
+                    <a href="https://flowmate.rollingcatsoftware.com" target="_blank" rel="noopener" class="project-link">
+                        <span data-en>Visit Project</span><span data-tr>Projeyi Ziyaret Et</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/AhmetKadir/flowmate" target="_blank" rel="noopener" class="project-link-github">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Source
+                    </a>
+                </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- SCREENSHOTS / MOCKUPS -->
+<section id="screenshots">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Project Previews</span><span data-tr>Proje Oniizlemeleri</span></h2>
+            <p data-en>Visual snapshots of applications in action.</p>
+            <p data-tr>Calisir haldeki uygulamalarin gorsel oniizlemeleri.</p>
+        </div>
+        <div class="screenshots-grid fade-in">
+            <div class="screenshot-card">
+                <div class="screenshot-preview" style="background: linear-gradient(135deg, #6366f1, #06b6d4);">
+                    <div class="screenshot-preview-inner">
+                        <div class="mockup-label">FIVUCSAS</div>
+                        <div class="mockup-sublabel"><span data-en>Biometric Auth Dashboard</span><span data-tr>Biyometrik Dogrulama Paneli</span></div>
+                    </div>
+                </div>
+                <div class="screenshot-info">
+                    <div class="screenshot-info-title"><span data-en>Admin Console & Auth Methods</span><span data-tr>Yonetici Konsolu & Dogrulama Yontemleri</span></div>
+                    <div class="screenshot-info-sub"><span data-en>Multi-tenant dashboard with 10 auth method configurations</span><span data-tr>10 dogrulama yontemi yapilandirmali cok kiracili panel</span></div>
+                </div>
+            </div>
+            <div class="screenshot-card">
+                <div class="screenshot-preview" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                    <div class="screenshot-preview-inner">
+                        <div class="mockup-label">Sarnic</div>
+                        <div class="mockup-sublabel"><span data-en>Schedule Designer</span><span data-tr>Program Tasarimcisi</span></div>
+                    </div>
+                </div>
+                <div class="screenshot-info">
+                    <div class="screenshot-info-title"><span data-en>Drag & Drop Schedule Builder</span><span data-tr>Surukle & Birak Program Olusturucu</span></div>
+                    <div class="screenshot-info-sub"><span data-en>AI-powered constraint solver with real-time updates</span><span data-tr>Gercek zamanli guncellemeli YZ destekli kisit cozucu</span></div>
+                </div>
+            </div>
+            <div class="screenshot-card">
+                <div class="screenshot-preview" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                    <div class="screenshot-preview-inner">
+                        <div class="mockup-label">Mizan</div>
+                        <div class="mockup-sublabel"><span data-en>Semantic Search</span><span data-tr>Semantik Arama</span></div>
+                    </div>
+                </div>
+                <div class="screenshot-info">
+                    <div class="screenshot-info-title"><span data-en>Quranic Text Search Engine</span><span data-tr>Kuran Metin Arama Motoru</span></div>
+                    <div class="screenshot-info-sub"><span data-en>Hybrid BM25 + vector search with Arabic morphology</span><span data-tr>Arapca morfoloji ile hibrit BM25 + vektor arama</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFRASTRUCTURE -->
+<section id="infrastructure" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Infrastructure</span><span data-tr>Altyapi</span></h2>
+            <p data-en>Self-hosted production stack powering all services.</p>
+            <p data-tr>Tum hizmetleri calistiran kendi barindirma uretim yigini.</p>
+        </div>
+        <div class="infra-grid fade-in">
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F5A5;&#xFE0F;</div>
+                <div class="infra-name">Hetzner VPS</div>
+                <div class="infra-desc"><span data-en>Dedicated cloud server in Germany</span><span data-tr>Almanya'da ozel bulut sunucu</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F433;</div>
+                <div class="infra-name">Docker</div>
+                <div class="infra-desc"><span data-en>Containerized microservices</span><span data-tr>Konteynerize mikroservisler</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F500;</div>
+                <div class="infra-name">Traefik</div>
+                <div class="infra-desc"><span data-en>Reverse proxy & auto SSL</span><span data-tr>Ters vekil & otomatik SSL</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F418;</div>
+                <div class="infra-name">PostgreSQL</div>
+                <div class="infra-desc"><span data-en>Primary database with pgvector</span><span data-tr>pgvector ile ana veritabani</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F534;</div>
+                <div class="infra-name">Redis</div>
+                <div class="infra-desc"><span data-en>Caching & session management</span><span data-tr>Onbellekleme & oturum yonetimi</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x2699;&#xFE0F;</div>
+                <div class="infra-name">GitHub Actions</div>
+                <div class="infra-desc"><span data-en>CI/CD pipelines for all repos</span><span data-tr>Tum depolar icin CI/CD pipeline'lari</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F4CA;</div>
+                <div class="infra-name">Uptime Kuma</div>
+                <div class="infra-desc"><span data-en>Service health monitoring</span><span data-tr>Servis saglik izleme</span></div>
+            </div>
+            <div class="infra-card">
+                <div class="infra-icon">&#x1F310;</div>
+                <div class="infra-name">Nginx</div>
+                <div class="infra-desc"><span data-en>Static file serving</span><span data-tr>Statik dosya sunumu</span></div>
+            </div>
         </div>
     </div>
 </section>
@@ -918,7 +1516,7 @@
 </section>
 
 <!-- TECH STACK -->
-<section id="tech">
+<section id="tech" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="section-inner">
         <div class="section-header fade-in">
             <h2><span data-en>Tech Stack</span><span data-tr>Teknoloji Yigini</span></h2>
@@ -942,6 +1540,65 @@
     </div>
 </section>
 
+<!-- BLOG / UPDATES -->
+<section id="blog">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <h2><span data-en>Updates</span><span data-tr>Guncellemeler</span></h2>
+            <p data-en>Latest news and development updates.</p>
+            <p data-tr>Son haberler ve gelistirme guncellemeleri.</p>
+        </div>
+        <div class="blog-grid fade-in">
+            <div class="blog-card">
+                <div class="blog-date"><span data-en>March 2026</span><span data-tr>Mart 2026</span></div>
+                <div class="blog-title"><span data-en>Portfolio Website Launched</span><span data-tr>Portfolyo Web Sitesi Yayinlandi</span></div>
+                <p class="blog-excerpt" data-en>RollingCat Software portfolio is now live at rollingcatsoftware.com, showcasing all projects and infrastructure.</p>
+                <p class="blog-excerpt" data-tr>RollingCat Software portfolyosu artik rollingcatsoftware.com adresinde yayinda, tum projeler ve altyapi sergileniyor.</p>
+                <span class="blog-tag">Launch</span>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><span data-en>March 2026</span><span data-tr>Mart 2026</span></div>
+                <div class="blog-title"><span data-en>All CI/CD Pipelines Green</span><span data-tr>Tum CI/CD Pipeline'lari Yesil</span></div>
+                <p class="blog-excerpt" data-en>All 5 repositories now have working CI/CD pipelines with GitHub Actions, including Muhabbet Mobile (Android + iOS).</p>
+                <p class="blog-excerpt" data-tr>5 deponun tumunde artik GitHub Actions ile calisan CI/CD pipeline'lari var, Muhabbet Mobile (Android + iOS) dahil.</p>
+                <span class="blog-tag">DevOps</span>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date"><span data-en>February 2026</span><span data-tr>Subat 2026</span></div>
+                <div class="blog-title"><span data-en>Mizan Semantic Search Upgrade</span><span data-tr>Mizan Semantik Arama Yukseltmesi</span></div>
+                <p class="blog-excerpt" data-en>Hybrid BM25 + ISRI stemmer search with translation embeddings now powers Mizan's Quranic text analysis engine.</p>
+                <p class="blog-excerpt" data-tr>Hibrit BM25 + ISRI stemmer arama ve ceviri gommeler artik Mizan'in Kuran metin analiz motorunu guclendiriyor.</p>
+                <span class="blog-tag">AI/ML</span>
+            </div>
+        </div>
+        <div class="blog-coming-soon fade-in">
+            <span data-en>More updates coming soon. Stay tuned!</span>
+            <span data-tr>Daha fazla guncelleme yakinda. Takipte kalin!</span>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="contact-content fade-in">
+            <h2><span data-en>Get in Touch</span><span data-tr>Iletisime Gecin</span></h2>
+            <p data-en>Interested in collaboration or have a project idea? Let's talk.</p>
+            <p data-tr>Is birligi ile mi ilgileniyorsunuz yoksa bir proje fikriniz mi var? Konusalim.</p>
+            <div class="contact-links">
+                <a href="mailto:contact@rollingcatsoftware.com" class="contact-link contact-link-email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>contact@rollingcatsoftware.com</span>
+                </a>
+                <a href="https://github.com/AhmetKadir" target="_blank" rel="noopener" class="contact-link contact-link-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>github.com/AhmetKadir</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
@@ -951,6 +1608,8 @@
             <a href="mailto:contact@rollingcatsoftware.com">
                 <span data-en>Contact</span><span data-tr>Iletisim</span>
             </a>
+            <a href="#projects"><span data-en>Projects</span><span data-tr>Projeler</span></a>
+            <a href="#services"><span data-en>Services</span><span data-tr>Hizmetler</span></a>
         </div>
     </div>
 </footer>
@@ -992,11 +1651,11 @@
         if (html.getAttribute('data-lang') === 'en') {
             html.setAttribute('data-lang', 'tr');
             langToggle.textContent = 'EN';
-            document.title = 'RollingCat Software';
+            document.title = 'RollingCat Software — Modern Web, Mobil & YZ Cozumleri';
         } else {
             html.setAttribute('data-lang', 'en');
             langToggle.textContent = 'TR';
-            document.title = 'RollingCat Software';
+            document.title = 'RollingCat Software — Modern Web, Mobile & AI Solutions';
         }
     });
 
