@@ -9,6 +9,11 @@
     <meta name="author" content="Ahmet Abdullah Gultekin">
     <meta name="theme-color" content="#0b0b10">
     <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="generator" content="RollingCat Portfolio v2">
 
     <!-- OG / Twitter -->
     <meta property="og:title" content="RollingCat Software — Solo-built software">
@@ -26,25 +31,105 @@
     <meta name="twitter:description" content="Solo-built software for the web, mobile, and AI.">
     <meta name="twitter:image" content="https://rollingcatsoftware.com/og-image.png">
 
-    <link rel="canonical" href="https://rollingcatsoftware.com">
+    <link rel="canonical" href="https://rollingcatsoftware.com/">
+    <!-- hreflang: single-URL bilingual site — same page serves EN + TR via toggle.
+         x-default + en + tr all point at the same canonical per Google's guidance
+         for same-URL multi-language content. -->
+    <link rel="alternate" hreflang="x-default" href="https://rollingcatsoftware.com/">
+    <link rel="alternate" hreflang="en" href="https://rollingcatsoftware.com/">
+    <link rel="alternate" hreflang="tr" href="https://rollingcatsoftware.com/">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%238b5cf6'/%3E%3Cpath d='M8 16c0-4.4 3.6-8 8-8s8 3.6 8 8' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='12' cy='14' r='1.5' fill='%23fff'/%3E%3Ccircle cx='20' cy='14' r='1.5' fill='%23fff'/%3E%3Cpath d='M12 19c0 0 2 2.5 4 2.5s4-2.5 4-2.5' stroke='%23fff' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="https://rollingcatsoftware.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- JSON-LD Person -->
+    <!-- JSON-LD Person — primary schema.org node for the portfolio owner. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Ahmet Abdullah Gultekin",
+      "name": "Ahmet Abdullah Gültekin",
+      "givenName": "Ahmet Abdullah",
+      "familyName": "Gültekin",
       "jobTitle": "Full-Stack Developer",
-      "url": "https://rollingcatsoftware.com",
+      "description": "Solo full-stack developer in Istanbul building modern, secure, and scalable applications end-to-end — from database to device.",
+      "url": "https://rollingcatsoftware.com/",
+      "image": "https://rollingcatsoftware.com/og-image.png",
       "email": "rollingcat.help@gmail.com",
-      "sameAs": ["https://github.com/ahmetabdullahgultekin"],
-      "worksFor": {"@type": "Organization", "name": "RollingCat Software", "url": "https://rollingcatsoftware.com"},
-      "alumniOf": {"@type": "EducationalOrganization", "name": "Marmara University", "department": "Computer Engineering"},
-      "address": {"@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR"}
+      "sameAs": [
+        "https://github.com/ahmetabdullahgultekin",
+        "https://github.com/Rollingcat-Software"
+      ],
+      "worksFor": {"@type": "Organization", "name": "RollingCat Software", "url": "https://rollingcatsoftware.com/"},
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Marmara University",
+        "department": "Computer Engineering",
+        "url": "https://www.marmara.edu.tr/"
+      },
+      "address": {"@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR"},
+      "knowsAbout": [
+        "Full-Stack Web Development",
+        "Mobile Development",
+        "Biometric Authentication",
+        "Cloud Infrastructure",
+        "Machine Learning",
+        "Spring Boot",
+        "Kotlin Multiplatform",
+        "React",
+        "FastAPI",
+        "Docker",
+        "PostgreSQL",
+        "pgvector",
+        "Redis"
+      ],
+      "knowsLanguage": ["tr", "en"]
+    }
+    </script>
+
+    <!-- JSON-LD Organization — RollingCat Software brand entity. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RollingCat Software",
+      "url": "https://rollingcatsoftware.com/",
+      "logo": "https://rollingcatsoftware.com/og-image.png",
+      "founder": {"@type": "Person", "name": "Ahmet Abdullah Gültekin"},
+      "foundingLocation": {"@type": "Place", "name": "Istanbul, Turkey"},
+      "email": "rollingcat.help@gmail.com",
+      "sameAs": ["https://github.com/Rollingcat-Software"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "general inquiries",
+        "email": "rollingcat.help@gmail.com",
+        "availableLanguage": ["en", "tr"]
+      }
+    }
+    </script>
+
+    <!-- JSON-LD WebSite — enables sitelinks search box + tells Google this is a bilingual site. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "RollingCat Software",
+      "alternateName": "RollingCat Portfolio",
+      "url": "https://rollingcatsoftware.com/",
+      "inLanguage": ["en", "tr"],
+      "publisher": {"@type": "Organization", "name": "RollingCat Software", "url": "https://rollingcatsoftware.com/"}
+    }
+    </script>
+
+    <!-- JSON-LD ProfilePage — explicit page-level schema that wraps the Person. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {"@type": "Person", "name": "Ahmet Abdullah Gültekin", "url": "https://rollingcatsoftware.com/"},
+      "inLanguage": ["en", "tr"],
+      "dateModified": "2026-04-22"
     }
     </script>
 
