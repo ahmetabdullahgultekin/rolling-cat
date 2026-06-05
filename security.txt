@@ -1,0 +1,9 @@
+# Security contact for rollingcatsoftware.com
+# https://securitytxt.org/  (RFC 9116)
+# Also served at /.well-known/security.txt
+
+Contact: mailto:rollingcat.help@gmail.com
+Expires: 2027-06-05T00:00:00Z
+Preferred-Languages: en, tr
+Canonical: https://rollingcatsoftware.com/security.txt
+Canonical: https://rollingcatsoftware.com/.well-known/security.txt

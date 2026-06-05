@@ -6,6 +6,21 @@
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set X-XSS-Protection "1; mode=block"
+
+  # Content-Security-Policy. 'unsafe-inline' is required because all CSS+JS is
+  # inline in index.html (no-build constraint). Google Fonts are the only
+  # off-origin resource today.
+  # NOTE: to enable privacy-respecting analytics later (e.g. a self-hosted
+  # Plausible/Umami at analytics.rollingcatsoftware.com), append that origin to
+  # script-src and connect-src below, then add the <script> to index.html.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'"
+</IfModule>
+
+# security.txt (RFC 9116) — make the well-known path resolve.
+<IfModule mod_headers.c>
+  <Files "security.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+  </Files>
 </IfModule>
 
 # Caching for static assets

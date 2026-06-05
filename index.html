@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" data-lang="en" data-theme="dark">
 <head>
+    <!-- Mark JS as available before first paint so scroll-reveal can hide
+         content; without JS the .js class is never set and everything stays
+         visible (progressive enhancement / no-JS accessibility). -->
+    <script>document.documentElement.classList.add('js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RollingCat Software — Solo-built software for the web, mobile, and AI</title>
@@ -32,6 +36,7 @@
     <meta name="twitter:image" content="https://rollingcatsoftware.com/og-image.png">
 
     <link rel="canonical" href="https://rollingcatsoftware.com/">
+    <link rel="author" href="/humans.txt">
     <!-- hreflang: single-URL bilingual site — same page serves EN + TR via toggle.
          x-default + en + tr all point at the same canonical per Google's guidance
          for same-URL multi-language content. -->
@@ -42,7 +47,10 @@
     <link rel="apple-touch-icon" href="https://rollingcatsoftware.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Only weights actually used in the stylesheet are requested (400/500/600/700);
+         dropped unused Inter 300/800/900 to trim the heaviest network cost on this
+         single-file page. display=swap keeps text visible during font load. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- JSON-LD Person — primary schema.org node for the portfolio owner. -->
     <script type="application/ld+json">
@@ -148,7 +156,7 @@
 
             --ink:           #ececf5;
             --ink-dim:       #a1a1b5;
-            --ink-mute:      #6b6b80;
+            --ink-mute:      #8888a0;  /* bumped from #6b6b80 → WCAG AA (≥4.5:1 on dark surfaces) */
 
             --violet:        #8b5cf6;
             --violet-2:      #a78bfa;
@@ -1116,6 +1124,9 @@
         }
         .contact-link.primary:hover { box-shadow: 0 10px 36px rgba(139,92,246,0.45); }
         .contact-link svg { width: 18px; height: 18px; }
+        /* The copy-email control is a <button> reusing .contact-link styling. */
+        button.contact-link { font-family: inherit; cursor: pointer; }
+        button.contact-link.copied { border-color: var(--green); color: var(--green); }
 
         /* ═══════ FOOTER ═══════ */
         footer {
@@ -1153,17 +1164,21 @@
         .footer-links a:hover { color: var(--ink); }
 
         /* ═══════ REVEAL / ANIMATIONS ═══════ */
-        .reveal {
+        /* Reveal-on-scroll only hides content when JS is present (html.js,
+           set by an inline script before paint). With JS disabled, the
+           IntersectionObserver never runs, so .reveal must stay fully
+           visible — guaranteed by gating the hidden state on .js. */
+        .js .reveal {
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal[data-delay="1"].visible { transition-delay: 0.05s; }
-        .reveal[data-delay="2"].visible { transition-delay: 0.1s; }
-        .reveal[data-delay="3"].visible { transition-delay: 0.15s; }
-        .reveal[data-delay="4"].visible { transition-delay: 0.2s; }
-        .reveal[data-delay="5"].visible { transition-delay: 0.25s; }
+        .js .reveal.visible { opacity: 1; transform: translateY(0); }
+        .js .reveal[data-delay="1"].visible { transition-delay: 0.05s; }
+        .js .reveal[data-delay="2"].visible { transition-delay: 0.1s; }
+        .js .reveal[data-delay="3"].visible { transition-delay: 0.15s; }
+        .js .reveal[data-delay="4"].visible { transition-delay: 0.2s; }
+        .js .reveal[data-delay="5"].visible { transition-delay: 0.25s; }
 
         @keyframes fade-in { to { opacity: 1; } }
 
@@ -1206,7 +1221,25 @@
                 transition-duration: 0.01ms !important;
             }
             .ambient::before, .ambient::after { animation: none; }
+            /* Never leave content hidden behind a scroll-reveal for users
+               who asked for reduced motion — show everything immediately. */
+            .js .reveal { opacity: 1 !important; transform: none !important; }
         }
+
+        /* ═══════ FOCUS VISIBLE (keyboard a11y) ═══════ */
+        a:focus-visible,
+        button:focus-visible,
+        .lang-toggle:focus-visible,
+        .mobile-menu-btn:focus-visible,
+        .contact-link:focus-visible,
+        .project-link:focus-visible {
+            outline: 2px solid var(--violet-2);
+            outline-offset: 3px;
+            border-radius: var(--radius-sm);
+        }
+        /* Don't show the ring on mouse clicks, only keyboard. */
+        a:focus:not(:focus-visible),
+        button:focus:not(:focus-visible) { outline: none; }
 
         /* ═══════ UTILITIES ═══════ */
         .sr-only {
@@ -1257,8 +1290,8 @@
             </a>
             <button class="lang-toggle" id="langToggle" aria-label="Toggle language">TR</button>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
     </div>
 </nav>
@@ -1333,25 +1366,25 @@
         </div>
         <div class="services">
             <div class="service reveal" data-num="01" data-delay="1">
-                <div class="service-icon">&#x1F310;</div>
+                <div class="service-icon" aria-hidden="true">&#x1F310;</div>
                 <h3><span data-en>Web Development</span><span data-tr>Web Geliştirme</span></h3>
                 <p data-en>Full-stack web applications with React, Next.js, Spring Boot, and FastAPI. Responsive, accessible, and performant.</p>
                 <p data-tr>React, Next.js, Spring Boot ve FastAPI ile full-stack web uygulamaları. Duyarlı, erişilebilir ve performanslı.</p>
             </div>
             <div class="service reveal" data-num="02" data-delay="2">
-                <div class="service-icon">&#x1F4F1;</div>
+                <div class="service-icon" aria-hidden="true">&#x1F4F1;</div>
                 <h3><span data-en>Mobile Development</span><span data-tr>Mobil Geliştirme</span></h3>
                 <p data-en>Cross-platform mobile apps with Kotlin Multiplatform and Compose Multiplatform &mdash; Android and iOS from one codebase.</p>
                 <p data-tr>Kotlin Multiplatform ve Compose Multiplatform ile çok platformlu mobil uygulamalar &mdash; tek kod tabanından Android ve iOS.</p>
             </div>
             <div class="service reveal" data-num="03" data-delay="3">
-                <div class="service-icon">&#x2601;&#xFE0F;</div>
+                <div class="service-icon" aria-hidden="true">&#x2601;&#xFE0F;</div>
                 <h3><span data-en>Cloud Infrastructure</span><span data-tr>Bulut Altyapısı</span></h3>
                 <p data-en>Self-hosted infra on Hetzner with Docker, Traefik, CI/CD, monitoring, and automated deployments &mdash; you own the stack.</p>
                 <p data-tr>Docker, Traefik, CI/CD, izleme ve otomatik dağıtımlar ile Hetzner üzerinde kendi altyapım &mdash; tüm yığın sizin.</p>
             </div>
             <div class="service reveal" data-num="04" data-delay="4">
-                <div class="service-icon">&#x1F9E0;</div>
+                <div class="service-icon" aria-hidden="true">&#x1F9E0;</div>
                 <h3><span data-en>AI / ML Integration</span><span data-tr>YZ / MÖ Entegrasyonu</span></h3>
                 <p data-en>Semantic search with pgvector, NLP pipelines, biometric authentication (face, voice, fingerprint), and constraint solvers.</p>
                 <p data-tr>pgvector ile semantik arama, NLP pipeline'ları, biyometrik kimlik doğrulama (yüz, ses, parmak izi) ve kısıt çözücüleri.</p>
@@ -1382,7 +1415,7 @@
             <!-- FIVUCSAS -->
             <article class="project reveal" data-color="violet" data-delay="1">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F9EC;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F9EC;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill">10 <span data-en>auth methods</span><span data-tr>yöntem</span></span>
@@ -1421,7 +1454,7 @@
             <!-- amispoof — browser face anti-spoof tester -->
             <article class="project reveal" data-color="amber" data-delay="2">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F6E1;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F6E1;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill">23 <span data-en>analyzers</span><span data-tr>analiz</span></span>
@@ -1460,7 +1493,7 @@
             <!-- Sarnic -->
             <article class="project reveal" data-color="emerald" data-delay="2">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F4C5;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F4C5;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill">AI <span data-en>solver</span><span data-tr>çözücü</span></span>
@@ -1490,7 +1523,7 @@
             <!-- Mizan -->
             <article class="project reveal" data-color="amber" data-delay="3">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F4D6;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F4D6;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill"><span data-en>Semantic search</span><span data-tr>Semantik arama</span></span>
@@ -1520,7 +1553,7 @@
             <!-- Fahrieren -->
             <article class="project reveal" data-color="rose" data-delay="4">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F697;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F697;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill"><span data-en>Bilingual</span><span data-tr>İki dilli</span></span>
@@ -1553,7 +1586,7 @@
             <!-- Muhabbet -->
             <article class="project reveal" data-color="indigo" data-delay="1">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F4AC;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F4AC;</div>
                     <div class="project-badges">
                         <span class="status beta"><span class="dot"></span> Beta</span>
                         <span class="feature-pill"><span data-en>Cross-platform</span><span data-tr>Çok platform</span></span>
@@ -1585,7 +1618,7 @@
             <!-- Share-Agent -->
             <article class="project reveal" data-color="teal" data-delay="2">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F4C8;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F4C8;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill"><span data-en>Auto trading</span><span data-tr>Oto ticaret</span></span>
@@ -1614,7 +1647,7 @@
             <!-- Gelecegin Adanasi -->
             <article class="project reveal" data-color="orange" data-delay="3">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F3D7;&#xFE0F;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F3D7;&#xFE0F;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
                         <span class="feature-pill"><span data-en>City planning</span><span data-tr>Şehir planlama</span></span>
@@ -1643,7 +1676,7 @@
             <!-- TrainVoc -->
             <article class="project reveal" data-color="sky" data-delay="4">
                 <div class="project-head">
-                    <div class="project-icon">&#x1F4DA;</div>
+                    <div class="project-icon" aria-hidden="true">&#x1F4DA;</div>
                     <div class="project-badges">
                         <span class="status development"><span class="dot"></span> Development</span>
                         <span class="feature-pill"><span data-en>Cross-platform</span><span data-tr>Çok platform</span></span>
@@ -1691,55 +1724,55 @@
         <div class="infra-grid">
             <div class="infra-card reveal" data-delay="1">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F5A5;&#xFE0F;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F5A5;&#xFE0F;</span>
                 <div class="infra-name">Hetzner Cloud</div>
                 <div class="infra-desc"><span data-en>Self-hosted cloud server in Germany</span><span data-tr>Almanya'da kendi bulut sunucum</span></div>
             </div>
             <div class="infra-card reveal" data-delay="1">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F433;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F433;</span>
                 <div class="infra-name">Docker</div>
                 <div class="infra-desc"><span data-en>Containerized microservices</span><span data-tr>Konteynerize mikroservisler</span></div>
             </div>
             <div class="infra-card reveal" data-delay="2">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F500;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F500;</span>
                 <div class="infra-name">Traefik</div>
                 <div class="infra-desc"><span data-en>Reverse proxy &amp; auto SSL</span><span data-tr>Ters vekil &amp; otomatik SSL</span></div>
             </div>
             <div class="infra-card reveal" data-delay="2">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F418;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F418;</span>
                 <div class="infra-name">PostgreSQL</div>
                 <div class="infra-desc"><span data-en>Primary database with pgvector</span><span data-tr>pgvector ile ana veritabanı</span></div>
             </div>
             <div class="infra-card reveal" data-delay="3">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F534;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F534;</span>
                 <div class="infra-name">Redis</div>
                 <div class="infra-desc"><span data-en>Caching &amp; session store</span><span data-tr>Önbellek &amp; oturum deposu</span></div>
             </div>
             <div class="infra-card reveal" data-delay="3">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x2699;&#xFE0F;</span>
+                <span class="infra-icon" aria-hidden="true">&#x2699;&#xFE0F;</span>
                 <div class="infra-name">GitHub Actions</div>
                 <div class="infra-desc"><span data-en>CI/CD for every repository</span><span data-tr>Her depo için CI/CD</span></div>
             </div>
             <div class="infra-card reveal" data-delay="4">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F4CA;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F4CA;</span>
                 <div class="infra-name">Uptime Kuma</div>
                 <div class="infra-desc"><span data-en>Service health monitoring</span><span data-tr>Servis sağlık izleme</span></div>
             </div>
             <div class="infra-card reveal" data-delay="4">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F4DC;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F4DC;</span>
                 <div class="infra-name">Loki + Grafana</div>
                 <div class="infra-desc"><span data-en>Logs &amp; observability stack</span><span data-tr>Log &amp; gözlem yığını</span></div>
             </div>
             <div class="infra-card reveal" data-delay="5">
                 <span class="dot-live" aria-hidden="true"></span>
-                <span class="infra-icon">&#x1F6E1;&#xFE0F;</span>
+                <span class="infra-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
                 <div class="infra-name">WireGuard VPN</div>
                 <div class="infra-desc"><span data-en>Encrypted private networking</span><span data-tr>Şifreli özel ağ</span></div>
             </div>
@@ -1770,22 +1803,22 @@
             </div>
             <div class="about-cards reveal" data-delay="1">
                 <div class="about-card">
-                    <span class="about-card-icon">&#x1F393;</span>
+                    <span class="about-card-icon" aria-hidden="true">&#x1F393;</span>
                     <div class="about-card-title">Marmara University</div>
                     <div class="about-card-sub"><span data-en>Computer Engineering</span><span data-tr>Bilgisayar Mühendisliği</span></div>
                 </div>
                 <div class="about-card">
-                    <span class="about-card-icon">&#x1F6E0;&#xFE0F;</span>
+                    <span class="about-card-icon" aria-hidden="true">&#x1F6E0;&#xFE0F;</span>
                     <div class="about-card-title">Full-Stack</div>
                     <div class="about-card-sub"><span data-en>Backend to mobile</span><span data-tr>Backend'den mobile</span></div>
                 </div>
                 <div class="about-card">
-                    <span class="about-card-icon">&#x2601;&#xFE0F;</span>
+                    <span class="about-card-icon" aria-hidden="true">&#x2601;&#xFE0F;</span>
                     <div class="about-card-title"><span data-en>Self-Hosted</span><span data-tr>Öz Sunucu</span></div>
                     <div class="about-card-sub">Docker + CI/CD</div>
                 </div>
                 <div class="about-card">
-                    <span class="about-card-icon">&#x1F1F9;&#x1F1F7;</span>
+                    <span class="about-card-icon" aria-hidden="true">&#x1F1F9;&#x1F1F7;</span>
                     <div class="about-card-title"><span data-en>Istanbul</span><span data-tr>Istanbul</span></div>
                     <div class="about-card-sub"><span data-en>Solo developer</span><span data-tr>Bağımsız geliştirici</span></div>
                 </div>
@@ -1807,21 +1840,21 @@
             </h2>
         </div>
         <div class="tech-stack-grid reveal">
-            <div class="tech-item"><span class="tech-item-icon">&#x2615;</span><span class="tech-item-name">Spring Boot</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F40D;</span><span class="tech-item-name">FastAPI</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x269B;&#xFE0F;</span><span class="tech-item-name">React</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x25B2;</span><span class="tech-item-name">Next.js</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F7E3;</span><span class="tech-item-name">Kotlin</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F4F1;</span><span class="tech-item-name">Compose MP</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F418;</span><span class="tech-item-name">PostgreSQL</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F534;</span><span class="tech-item-name">Redis</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F433;</span><span class="tech-item-name">Docker</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x2699;&#xFE0F;</span><span class="tech-item-name">GitHub Actions</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F500;</span><span class="tech-item-name">Traefik</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F310;</span><span class="tech-item-name">Nginx</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F4CA;</span><span class="tech-item-name">pgvector</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F510;</span><span class="tech-item-name">OAuth 2.0</span></div>
-            <div class="tech-item"><span class="tech-item-icon">&#x1F6E1;&#xFE0F;</span><span class="tech-item-name">WireGuard</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x2615;</span><span class="tech-item-name">Spring Boot</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F40D;</span><span class="tech-item-name">FastAPI</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x269B;&#xFE0F;</span><span class="tech-item-name">React</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x25B2;</span><span class="tech-item-name">Next.js</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F7E3;</span><span class="tech-item-name">Kotlin</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F4F1;</span><span class="tech-item-name">Compose MP</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F418;</span><span class="tech-item-name">PostgreSQL</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F534;</span><span class="tech-item-name">Redis</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F433;</span><span class="tech-item-name">Docker</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x2699;&#xFE0F;</span><span class="tech-item-name">GitHub Actions</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F500;</span><span class="tech-item-name">Traefik</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F310;</span><span class="tech-item-name">Nginx</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F4CA;</span><span class="tech-item-name">pgvector</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F510;</span><span class="tech-item-name">OAuth 2.0</span></div>
+            <div class="tech-item"><span class="tech-item-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span><span class="tech-item-name">WireGuard</span></div>
         </div>
     </div>
 </section>
@@ -1932,12 +1965,16 @@
                 <span data-tr>İş birliği, danışmanlık ya da yığınla ilgili merak &mdash; bir mesaj bırakın.</span>
             </p>
             <div class="contact-actions">
-                <a href="mailto:rollingcat.help@gmail.com" class="contact-link primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:rollingcat.help@gmail.com?subject=Project%20inquiry%20%E2%80%94%20RollingCat%20Software&amp;body=Hi%20Ahmet%2C%0A%0AI%27d%20like%20to%20talk%20about%3A%0A%0A%C2%B7%20What%20I%27m%20building%3A%0A%C2%B7%20Timeline%2Fbudget%3A%0A%C2%B7%20Best%20way%20to%20reach%20me%3A%0A%0AThanks%21" class="contact-link primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     rollingcat.help@gmail.com
                 </a>
+                <button type="button" id="copyEmailBtn" class="contact-link" data-email="rollingcat.help@gmail.com">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span class="copy-label"><span data-en>Copy email</span><span data-tr>E-postayı kopyala</span></span>
+                </button>
                 <a href="https://github.com/ahmetabdullahgultekin" target="_blank" rel="noopener" class="contact-link">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     github.com/ahmetabdullahgultekin
                 </a>
             </div>
@@ -1990,10 +2027,21 @@
     // ─── Mobile menu ───
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    mobileBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    const setMenu = (open) => {
+        navLinks.classList.toggle('open', open);
+        mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    mobileBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
     navLinks.querySelectorAll('a').forEach(a =>
-        a.addEventListener('click', () => navLinks.classList.remove('open'))
+        a.addEventListener('click', () => setMenu(false))
     );
+    // Close the mobile menu on Escape for keyboard users.
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+            setMenu(false);
+            mobileBtn.focus();
+        }
+    });
 
     // ─── Language toggle (persisted) ───
     const langToggle = document.getElementById('langToggle');
@@ -2001,6 +2049,9 @@
     const setLang = (lang) => {
         html.setAttribute('data-lang', lang);
         langToggle.textContent = lang === 'en' ? 'TR' : 'EN';
+        // Expose the action the button performs to assistive tech,
+        // phrased in the language the user can currently read.
+        langToggle.setAttribute('aria-label', lang === 'en' ? "Türkçe'ye geç" : 'Switch to English');
         html.setAttribute('lang', lang);
         document.title = lang === 'en'
             ? "RollingCat Software — Solo-built software for the web, mobile, and AI"
@@ -2018,6 +2069,34 @@
     langToggle.addEventListener('click', () => {
         setLang(html.getAttribute('data-lang') === 'en' ? 'tr' : 'en');
     });
+
+    // ─── Copy-email button (lead capture convenience, no backend) ───
+    const copyBtn = document.getElementById('copyEmailBtn');
+    if (copyBtn) {
+        const label = copyBtn.querySelector('.copy-label');
+        const original = label.innerHTML;
+        copyBtn.addEventListener('click', async () => {
+            const email = copyBtn.dataset.email;
+            const lang = html.getAttribute('data-lang');
+            const done = lang === 'en' ? 'Copied!' : 'Kopyalandı!';
+            try {
+                await navigator.clipboard.writeText(email);
+            } catch (e) {
+                // Fallback for older / insecure-context browsers.
+                const ta = document.createElement('textarea');
+                ta.value = email; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select();
+                try { document.execCommand('copy'); } catch (_) {}
+                document.body.removeChild(ta);
+            }
+            copyBtn.classList.add('copied');
+            label.textContent = done;
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                label.innerHTML = original;
+            }, 1800);
+        });
+    }
 
     // ─── Smooth scroll ───
     document.querySelectorAll('a[href^="#"]').forEach(a => {
