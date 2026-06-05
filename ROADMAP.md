@@ -82,7 +82,10 @@ exclude `ROADMAP.md` / `TODO.md`.
 - Keep `lastmod` / `dateModified` wired to real change dates — ideally via a
   release checklist or a pre-commit hook so they never drift again.
 - Re-verify project counts, statuses, and analyzer/feature numbers against the
-  source repos whenever a flagship project changes.
+  source repos whenever a flagship project changes. *(2026-06-05 code-quality
+  review caught the Work heading saying "Eight/Sekiz projects" against 9 cards
+  + a "9" hero strip — fixed to "Nine/Dokuz". A mechanical count-vs-cards check
+  belongs in the Phase 6 CI parity gate so this can't drift again.)*
 **Exit (rolling):** a fresh visitor only ever sees true, current claims.
 
 ### Phase 2 — Case studies & proof-of-work  *(turn a portfolio into evidence)*
