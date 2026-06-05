@@ -1,0 +1,20 @@
+/* TEAM */
+  Developer: Ahmet Abdullah Gültekin
+  Role: Solo full-stack developer — web, mobile, AI/ML, infrastructure
+  Contact: rollingcat.help [at] gmail.com
+  GitHub: https://github.com/ahmetabdullahgultekin
+  Org: https://github.com/Rollingcat-Software
+  Location: Istanbul, Turkey
+
+/* SITE */
+  Brand: RollingCat Software
+  Standards: HTML5, CSS3, vanilla JavaScript
+  Components: Hand-written single-file index.html, no framework, no build step
+  Languages: English, Türkçe (single-URL bilingual toggle)
+  Hosting: Hostinger (static), deployed by rsync over SSH
+  Doctype: HTML5
+
+/* THANKS */
+  To everyone shipping self-hosted, open software.
+
+  Last update: 2026-06-05
