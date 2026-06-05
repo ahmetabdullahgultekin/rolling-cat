@@ -5,7 +5,12 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  Header always set X-XSS-Protection "1; mode=block"
+  # X-XSS-Protection is deprecated and removed from all modern browsers;
+  # "1; mode=block" is flagged as a misconfiguration by security scanners
+  # (it could enable XS-Leaks). Explicitly disable the legacy auditor; the
+  # Content-Security-Policy below is the real XSS defence. See MDN + OWASP
+  # Secure Headers.
+  Header always set X-XSS-Protection "0"
 
   # Content-Security-Policy. 'unsafe-inline' is required because all CSS+JS is
   # inline in index.html (no-build constraint). Google Fonts are the only
