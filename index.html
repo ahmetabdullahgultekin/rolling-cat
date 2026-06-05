@@ -129,7 +129,7 @@
       "@type": "ProfilePage",
       "mainEntity": {"@type": "Person", "name": "Ahmet Abdullah Gültekin", "url": "https://rollingcatsoftware.com/"},
       "inLanguage": ["en", "tr"],
-      "dateModified": "2026-04-22"
+      "dateModified": "2026-06-05"
     }
     </script>
 
@@ -1297,11 +1297,11 @@
 
     <div class="strip" role="group" aria-label="Stats">
         <div class="strip-item">
-            <span class="strip-num">8</span>
+            <span class="strip-num">9</span>
             <span class="strip-lbl"><span data-en>Projects</span><span data-tr>Proje</span></span>
         </div>
         <div class="strip-item">
-            <span class="strip-num">6</span>
+            <span class="strip-num">7</span>
             <span class="strip-lbl"><span data-en>In production</span><span data-tr>Üretimde</span></span>
         </div>
         <div class="strip-item">
@@ -1424,14 +1424,14 @@
                     <div class="project-icon">&#x1F6E1;</div>
                     <div class="project-badges">
                         <span class="status production"><span class="dot"></span> Production</span>
-                        <span class="feature-pill">19 <span data-en>analyzers</span><span data-tr>analiz</span></span>
+                        <span class="feature-pill">23 <span data-en>analyzers</span><span data-tr>analiz</span></span>
                     </div>
                 </div>
                 <h3 class="project-name">amispoof</h3>
                 <div class="project-tag">// browser face anti-spoof + liveness tester</div>
                 <p class="project-desc">
-                    <span data-en>Open-source session-based face anti-spoof pipeline running entirely client-side in the browser. 19 analyzers (MiniFASNet, rPPG, blink, gaze, blendshapes, 3D pose, audio-mouth sync, …) plus a 15-axis passive liveness-proof scorer. WebAssembly via onnxruntime-web + MediaPipe Tasks. No GPU server, no frames uploaded. Companion engine for the FIVUCSAS biometric platform.</span>
-                    <span data-tr>Tarayıcıda tamamen istemci tarafında çalışan açık kaynaklı oturum tabanlı yüz anti-spoof işlem hattı. 19 analiz (MiniFASNet, rPPG, blink, bakış, blendshape, 3D poz, ses-ağız senkronu…) + 15 eksenli pasif canlılık-kanıt skorlayıcı. WebAssembly üzerinden onnxruntime-web + MediaPipe Tasks. GPU sunucu yok, kare yüklemesi yok. FIVUCSAS biyometrik platformunun tamamlayıcı motoru.</span>
+                    <span data-en>Open-source session-based face anti-spoof pipeline running entirely client-side in the browser. 23 analyzers (MiniFASNet, rPPG, blink, gaze, blendshapes, 3D pose, audio-mouth sync, …) plus a weighted passive liveness-proof scorer. WebAssembly via onnxruntime-web + MediaPipe Tasks. No GPU server, no frames uploaded. Companion engine for the FIVUCSAS biometric platform.</span>
+                    <span data-tr>Tarayıcıda tamamen istemci tarafında çalışan açık kaynaklı oturum tabanlı yüz anti-spoof işlem hattı. 23 analiz (MiniFASNet, rPPG, blink, bakış, blendshape, 3D poz, ses-ağız senkronu…) + ağırlıklı pasif canlılık-kanıt skorlayıcı. WebAssembly üzerinden onnxruntime-web + MediaPipe Tasks. GPU sunucu yok, kare yüklemesi yok. FIVUCSAS biyometrik platformunun tamamlayıcı motoru.</span>
                 </p>
                 <div class="tech-row">
                     <span class="tech">TypeScript</span>
@@ -1844,6 +1844,24 @@
         </div>
         <div class="timeline">
             <div class="tl-item reveal">
+                <div class="tl-date"><span data-en>June 2026</span><span data-tr>Haziran 2026</span></div>
+                <h3 class="tl-title"><span data-en>amispoof browser anti-spoof port shipped</span><span data-tr>amispoof tarayıcı anti-spoof portu yayınlandı</span></h3>
+                <p class="tl-body">
+                    <span data-en>The FIVUCSAS face presentation-attack-detection pipeline now runs fully client-side in the browser as amispoof — 23 analyzers (MiniFASNet, rPPG, blink, gaze, 3D pose, audio-mouth sync) plus a passive liveness-proof scorer, on WebAssembly via onnxruntime-web + MediaPipe. No frames leave the device. Live at amispoof.fivucsas.com.</span>
+                    <span data-tr>FIVUCSAS yüz sunum-saldırısı-tespit hattı artık amispoof olarak tarayıcıda tamamen istemci tarafında çalışıyor — 23 analiz (MiniFASNet, rPPG, blink, bakış, 3D poz, ses-ağız senkronu) ve pasif canlılık-kanıt skorlayıcı, onnxruntime-web + MediaPipe üzerinden WebAssembly ile. Hiçbir kare cihazdan ayrılmıyor. amispoof.fivucsas.com adresinde yayında.</span>
+                </p>
+                <span class="tl-tag">AI/ML</span>
+            </div>
+            <div class="tl-item reveal" data-delay="1">
+                <div class="tl-date"><span data-en>May 2026</span><span data-tr>Mayıs 2026</span></div>
+                <h3 class="tl-title"><span data-en>Identifier-first login + passkeys in FIVUCSAS</span><span data-tr>FIVUCSAS'ta önce-kimlik girişi + passkey'ler</span></h3>
+                <p class="tl-body">
+                    <span data-en>FIVUCSAS moved to a config-driven, identifier-first login: tenants pick the first factor and step order. Passkey (WebAuthn) hybrid login, number-matching approve-login, NFC ID, and a cross-device QR sign-in all shipped and deployed.</span>
+                    <span data-tr>FIVUCSAS yapılandırma güdümlü, önce-kimlik girişine geçti: kiracılar ilk faktörü ve adım sırasını seçiyor. Passkey (WebAuthn) hibrit giriş, numara-eşleştirmeli onay-girişi, NFC kimlik ve cihazlar-arası QR ile giriş yayınlandı ve dağıtıldı.</span>
+                </p>
+                <span class="tl-tag">Security</span>
+            </div>
+            <div class="tl-item reveal" data-delay="2">
                 <div class="tl-date"><span data-en>April 2026</span><span data-tr>Nisan 2026</span></div>
                 <h3 class="tl-title"><span data-en>N-Step MFA flow in FIVUCSAS</span><span data-tr>FIVUCSAS'ta N-Adımlı MFA akışı</span></h3>
                 <p class="tl-body">
