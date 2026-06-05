@@ -13,7 +13,7 @@ jobs:
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avz --delete --exclude .git --exclude deploy.sh --exclude .github
+          switches: -avz --delete --exclude .git --exclude deploy.sh --exclude .github --exclude ROADMAP.md --exclude TODO.md
           path: ./
           remote_path: ~/domains/rollingcatsoftware.com/public_html/
           remote_host: 46.202.158.52
