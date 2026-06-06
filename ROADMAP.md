@@ -38,7 +38,7 @@ operates real software end-to-end. It must:
 
 ---
 
-## Current state (2026-06-05, HEAD)
+## Current state (2026-06-06, HEAD)
 
 **Structure** — `index.html` (~110 KB, fully inline CSS+JS). Sections:
 `#hero` → `#services` (4 cards) → `#work` (9 project cards) →
@@ -51,9 +51,10 @@ hero stat-strip reconciled to **9 projects / 7 in production**; `sitemap.xml`
 `lastmod` and JSON-LD `dateModified` wired to the real change date.
 
 **SEO** — canonical + hreflang (x-default/en/tr, single-URL bilingual), OG +
-Twitter cards, 4 valid JSON-LD blocks (Person, Organization, WebSite,
-ProfilePage), `robots.txt`, `sitemap.xml`, security headers + CSP + caching +
-gzip in `.htaccess`.
+Twitter cards (with `og:image:alt` / `twitter:image:alt`, added 2026-06-06),
+4 valid JSON-LD blocks (Person, Organization, WebSite, ProfilePage),
+`robots.txt`, `sitemap.xml`, security headers + CSP + caching + gzip in
+`.htaccess`.
 
 **i18n** — EN/TR toggle complete and balanced, persisted to `localStorage`,
 with first-visit language detection and a per-language title swap.
@@ -61,8 +62,20 @@ with first-visit language detection and a per-language title swap.
 **a11y / perf** — skip link; `aria-expanded` mobile menu; language-aware
 `aria-label` on the toggle; decorative emoji `aria-hidden`; `:focus-visible`
 rings; WCAG-AA body contrast (`--ink-mute` bumped to `#8888a0`); **no-JS /
-reduced-motion reveal fallback**; Google Fonts trimmed to the 4 weights
-actually used with `display=swap`. og-image confirmed 1200×630.
+reduced-motion reveal fallback**; fonts trimmed to the 4 weights actually used
+with `display=swap`. og-image confirmed 1200×630.
+
+**Privacy / fonts** — as of 2026-06-06 fonts are served from **Bunny Fonts**
+(`fonts.bunny.net`), an EU-hosted, cookieless, GDPR/KVKK-compliant drop-in for
+Google Fonts (same `css2` API; no visitor IP transferred to Google). The CSP
+`style-src`/`font-src` and the page preconnect were updated together; the swap
+is reversible by changing the origin back. This closes the tech-stack review's
+§2 privacy finding via its fix-option 2; self-hosting woff2 (option 1) and
+`@font-face` fallback metrics remain the deeper Phase 4 option.
+
+**Reviews on record** — `docs/CODE_QUALITY_2026-06-05.md` (A−, all findings
+fixed) and `docs/TECH_STACK_REVIEW_2026-06-05.md` (A−; resolution log appended
+2026-06-06 — all actionable items now closed). Both excluded from deploy.
 
 **Growth scaffolding** — `humans.txt`, `security.txt` (+ `/.well-known/`),
 a pre-filled `mailto:` subject/body and a copy-email button, and an
@@ -70,7 +83,9 @@ analytics-ready CSP.
 
 **Deploy** — manual `./deploy.sh` (rsync over SSH 65002) is the reliable path;
 the Actions workflow is best-effort (runner reachability is flaky). Both
-exclude `ROADMAP.md` / `TODO.md`.
+exclude `docs/`, `CLAUDE.md`, `README.md`, `ROADMAP.md`, `TODO.md`, `.claude`,
+`.git`, `.github`, `deploy.sh` — so all planning/review docs stay out of the
+live bundle.
 
 ---
 
@@ -127,9 +142,12 @@ nav.
 keyboard-only and no-JS. *(Foundations shipped in the 2026-06-05 pass.)*
 - Run and track Lighthouse (mobile) + axe-core in a checklist; fix any
   remaining serious violations.
-- **Fonts:** evaluate self-hosting the trimmed weights as `woff2` (removes the
-  render-blocking cross-origin request entirely; pairs with `font-display:
-  swap` and a `preload`). Weigh against the simplicity of the CDN link.
+- **Fonts:** now on Bunny Fonts (privacy CDN, GDPR/KVKK-compliant) as of
+  2026-06-06. Remaining upside of *self-hosting* the trimmed weights as `woff2`:
+  removes the cross-origin request entirely, enables Subresource Integrity (not
+  possible on any fonts CDN), and unlocks `@font-face` fallback metrics
+  (`size-adjust`/`ascent-override`) to cut CLS. Pairs with `font-display: swap`
+  and a `preload`. Weigh against the simplicity of the one-line CDN link.
 - Confirm every raster carries explicit `width`/`height`; lazy-load any
   below-the-fold imagery added later.
 - Re-validate all 4 JSON-LD blocks in Google Rich Results after content edits;
@@ -228,7 +246,7 @@ served from a site that's still small enough for one person to own completely.
 - **Deploy reality.** `./deploy.sh` from a host with SSH reach to Hostinger is
   the reliable path; the GitHub Actions runner often can't open the rsync
   connection. Browser-verify every live change.
-- **Excludes.** `ROADMAP.md` and `TODO.md` never ship to the live host (both
-  `deploy.sh` and the workflow exclude them).
+- **Excludes.** `docs/`, `CLAUDE.md`, `README.md`, `ROADMAP.md`, and `TODO.md`
+  never ship to the live host (both `deploy.sh` and the workflow exclude them).
 - **gh flag.** Always `gh ... -R ahmetabdullahgultekin/rolling-cat`.
 - **Parity.** Keep `data-en` / `data-tr` counts balanced on every content PR.
