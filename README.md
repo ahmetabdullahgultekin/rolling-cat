@@ -37,7 +37,10 @@ product statement. Supporting files:
   fully visible when JavaScript is disabled (the hidden state is gated on an
   `html.js` class set before paint).
 - **Performance**: only the font weights actually used (400/500/600/700) are
-  requested from Google Fonts with `display=swap`.
+  requested with `display=swap`.
+- **Privacy**: fonts are served from **Bunny Fonts** (`fonts.bunny.net`), an
+  EU-hosted, cookieless, GDPR/KVKK-compliant drop-in for Google Fonts — no
+  visitor IP is transferred to Google. No analytics, no third-party JS.
 
 ## Deployment
 
@@ -57,8 +60,9 @@ product statement. Supporting files:
 
 `deploy.sh` rsyncs the repo to
 `~/domains/rollingcatsoftware.com/public_html/` over SSH port 65002, with
-`--delete`, **excluding** `.git`, `deploy.sh`, `ROADMAP.md`, and `TODO.md`
-(planning docs never ship to the live host).
+`--delete`, **excluding** `.git`, `.github`, `deploy.sh`, `.claude`, `docs/`,
+`CLAUDE.md`, `README.md`, `ROADMAP.md`, and `TODO.md` (planning/review docs
+never ship to the live host).
 
 ### Automatic deploy (best-effort)
 
