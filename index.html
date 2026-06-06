@@ -30,10 +30,12 @@
     <meta property="og:image" content="https://rollingcatsoftware.com/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="RollingCat Software — solo-built software for the web, mobile, and AI.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RollingCat Software">
     <meta name="twitter:description" content="Solo-built software for the web, mobile, and AI.">
     <meta name="twitter:image" content="https://rollingcatsoftware.com/og-image.png">
+    <meta name="twitter:image:alt" content="RollingCat Software — solo-built software for the web, mobile, and AI.">
 
     <link rel="canonical" href="https://rollingcatsoftware.com/">
     <link rel="author" href="/humans.txt">
@@ -45,12 +47,17 @@
     <link rel="alternate" hreflang="tr" href="https://rollingcatsoftware.com/">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%238b5cf6'/%3E%3Cpath d='M8 16c0-4.4 3.6-8 8-8s8 3.6 8 8' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='12' cy='14' r='1.5' fill='%23fff'/%3E%3Ccircle cx='20' cy='14' r='1.5' fill='%23fff'/%3E%3Cpath d='M12 19c0 0 2 2.5 4 2.5s4-2.5 4-2.5' stroke='%23fff' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="https://rollingcatsoftware.com/og-image.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Only weights actually used in the stylesheet are requested (400/500/600/700);
-         dropped unused Inter 300/800/900 to trim the heaviest network cost on this
-         single-file page. display=swap keeps text visible during font load. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts via Bunny Fonts (fonts.bunny.net) — a drop-in, API-compatible,
+         GDPR/KVKK-compliant replacement for Google Fonts. EU-hosted and
+         cookieless: no visitor IP is transferred to Google (cf. Munich court
+         ruling Az. 3 O 17493/20). Both the CSS and the woff2 files are served
+         from the single fonts.bunny.net origin, so one preconnect suffices.
+         Only weights actually used in the stylesheet are requested
+         (400/500/600/700); display=swap keeps text visible during font load.
+         Reversible: swap fonts.bunny.net → fonts.googleapis.com/gstatic.com
+         (and restore both preconnects + the CSP font/style origins). -->
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- JSON-LD Person — primary schema.org node for the portfolio owner. -->
     <script type="application/ld+json">
