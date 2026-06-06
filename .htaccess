@@ -13,12 +13,15 @@
   Header always set X-XSS-Protection "0"
 
   # Content-Security-Policy. 'unsafe-inline' is required because all CSS+JS is
-  # inline in index.html (no-build constraint). Google Fonts are the only
-  # off-origin resource today.
+  # inline in index.html (no-build constraint). Bunny Fonts (fonts.bunny.net) is
+  # the only off-origin resource today — a GDPR/KVKK-compliant, EU-hosted,
+  # cookieless drop-in for Google Fonts (no visitor IP transferred to Google).
+  # Both the font CSS and the woff2 files come from the single fonts.bunny.net
+  # origin, so it appears in both style-src and font-src.
   # NOTE: to enable privacy-respecting analytics later (e.g. a self-hosted
   # Plausible/Umami at analytics.rollingcatsoftware.com), append that origin to
   # script-src and connect-src below, then add the <script> to index.html.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; font-src 'self' https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'"
 </IfModule>
 
 # security.txt (RFC 9116) — make the well-known path resolve.

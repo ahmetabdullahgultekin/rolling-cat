@@ -140,3 +140,34 @@ Items P3–P4 are roadmap items, not defects. P2 items are one-liners.
 ## Overall Assessment
 
 **A− (proportionate to a single-file static site).** The stack is deliberately minimal and that is the right call. The only genuine technical debt is one deprecated header and one missing deploy exclude. The Google Fonts CDN usage is a known, documented trade-off, not an oversight, and self-hosting is already on the roadmap. There is nothing here that warrants a framework, bundler, or architectural change.
+
+---
+
+## Resolution log (appended 2026-06-06)
+
+All actionable findings from this review are now closed:
+
+- **§1 / P2 — X-XSS-Protection → `"0"`.** SHIPPED on `master` (PR #14,
+  `9897dc8`) before this review was merged. `.htaccess` now sets
+  `X-XSS-Protection "0"` with an explanatory comment.
+- **§4 / P2 — exclude `docs/` (and `CLAUDE.md` / `README.md`) from deploy.**
+  SHIPPED on `master` (PR #15, `cd9212e`). Both `deploy.sh` and
+  `.github/workflows/deploy.yml` now exclude `docs`, `CLAUDE.md`, `README.md`,
+  `.claude`. (Note: the version of these two files on the original
+  `review/tech-stack-2026-06-05` branch predates those PRs and looks
+  unpatched — master is the source of truth.)
+- **§2 / P3 — Google Fonts CDN → privacy CDN.** SHIPPED 2026-06-06 (branch
+  `feat/seo-a11y-perf`). Took the review's fix-option 2 (drop-in privacy CDN):
+  swapped `fonts.googleapis.com` + `fonts.gstatic.com` for **Bunny Fonts**
+  (`fonts.bunny.net`) — same `css2?family=...` API, EU-hosted, cookieless, no
+  visitor IP transferred to Google. `index.html` font `<link>` + single
+  preconnect and the `.htaccess` CSP `style-src`/`font-src` origins were
+  updated together. Reversible by swapping the origin back. Self-hosting
+  (option 1) and `@font-face` fallback metrics (§3 / P4) remain the deeper
+  ROADMAP Phase 4 option if SRI / zero-third-party is later required.
+- **§3 / P4 — font fallback metrics.** Still deferred — needs the actual font
+  files to compute `size-adjust`/`ascent-override`, so it pairs with the
+  self-hosting option, not the CDN swap.
+
+Also shipped alongside the font swap (SEO/a11y completeness, not flagged by
+this review): `og:image:alt` + `twitter:image:alt` on the social card.
