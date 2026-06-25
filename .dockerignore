@@ -1,0 +1,8 @@
+.git
+node_modules
+docs
+deploy.sh
+CLAUDE.md
+README.md
+ROADMAP.md
+TODO.md

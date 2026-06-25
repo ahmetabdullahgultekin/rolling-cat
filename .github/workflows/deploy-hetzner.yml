@@ -1,0 +1,59 @@
+name: Deploy to Hetzner
+
+# Replaces the old Hostinger rsync deploy (hosting plan cancelled 2026-06).
+# The site now runs as an nginx container on the Hetzner box behind Traefik,
+# which terminates TLS (auto Let's Encrypt). This workflow SSHes into the box,
+# pulls the latest code, and (re)builds the container.
+#
+# Required repo/org secrets (copy from the FIVUCSAS repo, where they already exist):
+#   VPS_HOST     = 116.203.222.213
+#   VPS_USER     = deploy
+#   VPS_SSH_KEY  = private key authorised for deploy@the box
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.js'
+      - '**/*.png'
+      - '**/*.svg'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'security.txt'
+      - 'humans.txt'
+      - '.well-known/**'
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'docker-compose.prod.yml'
+      - '.github/workflows/deploy-hetzner.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-rollingcat
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy rollingcatsoftware.com
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        timeout-minutes: 8
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          command_timeout: 6m
+          script: |
+            set -e
+            cd /opt/projects/rollingcat-website
+            git pull origin master
+            docker compose -f docker-compose.prod.yml up -d --build
+            docker compose -f docker-compose.prod.yml ps
+            # Health check through Traefik on the box itself (cert may be the
+            # Traefik default until DNS points here, so -k).
+            curl -skf -o /dev/null --resolve rollingcatsoftware.com:443:127.0.0.1 \
+              https://rollingcatsoftware.com/ && echo "rollingcatsoftware.com healthy"

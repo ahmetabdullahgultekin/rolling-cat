@@ -1,0 +1,30 @@
+# rollingcatsoftware.com — static brand site on the Hetzner box behind Traefik.
+# Replaces Hostinger hosting (plan cancelled 2026-06). DNS apex/www point to
+# 116.203.222.213; Traefik issues the Let's Encrypt cert automatically.
+services:
+  rollingcat-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rollingcat-website
+    container_name: rollingcat-web
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rollingcat-web.rule=Host(`rollingcatsoftware.com`) || Host(`www.rollingcatsoftware.com`)"
+      - "traefik.http.routers.rollingcat-web.entrypoints=websecure"
+      - "traefik.http.routers.rollingcat-web.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rollingcat-web.middlewares=secure-headers@file,rate-limit@file"
+      - "traefik.http.services.rollingcat-web.loadbalancer.server.port=80"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          pids: 128
+
+networks:
+  proxy:
+    name: proxy
+    external: true
